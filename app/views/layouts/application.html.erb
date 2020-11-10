@@ -38,7 +38,11 @@
       </nav>
     </header>
     <main>
-     <p id="notice"></p>
+      <p id="notice">
+        <% if flash[:notice] %>
+          <%= notice %>
+        <% end %>
+      </p>
     <%= yield %>
     </main>
     <footer>
