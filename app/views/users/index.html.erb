@@ -1,4 +1,19 @@
 <div class="container px-5 px-sm-0">
+  <% if @book.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= I18n.t("errors.messages.not_saved",
+                 count: @book.errors.count,
+                 resource: @book.class.model_name.human.downcase)
+       %>
+    </h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>

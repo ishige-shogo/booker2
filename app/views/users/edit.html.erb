@@ -2,6 +2,21 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= I18n.t("errors.messages.not_saved",
+                         count: @user.errors.count,
+                         resource: @user.class.model_name.human.downcase)
+               %>
+            </h2>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       <%= form_with model:@user, local: true do |f| %>
         <div class="form-group">
           <label for="user_name">Name</label>
