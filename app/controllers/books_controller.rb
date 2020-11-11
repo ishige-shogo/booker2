@@ -28,6 +28,11 @@ before_action :authenticate_user!
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user.id == current_user.id
+      render :edit
+    else
+      redirect_to books_path
+    end
   end
 
   def update
